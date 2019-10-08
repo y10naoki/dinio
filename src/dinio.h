@@ -198,12 +198,12 @@ extern "C" {
 int config(const char* conf_fname);
 
 /* dinio_server.c */
-void dinio_server();
+void dinio_server(void);
 SOCKET socket_listen(ulong addr, ushort port, int backlog, struct sockaddr_in* sockaddr);
 
 /* dinio_cmd.c */
-void stop_server();
-void status_server();
+void stop_server(void);
+void status_server(void);
 void add_server(const char* addr, const char* port, const char* scale_factor);
 void remove_server(const char* addr, const char* port);
 void unlock_server(const char* addr, const char* port);
@@ -211,9 +211,9 @@ void hash_server(int n, const char* keys[]);
 void import_server(const char* fname);
 
 /* memc_gateway.c */
-int memcached_gateway_start();
+int memcached_gateway_start(void);
 int memcached_gateway_event(SOCKET socket, struct sockaddr_in sockaddr);
-void memcached_gateway_end();
+void memcached_gateway_end(void);
 
 /* server_cmd.c */
 void status_command(SOCKET socket);
@@ -226,16 +226,16 @@ int import_command(SOCKET socket, int cn, const char** cl);
 
 /* dispatch.c */
 int dispatch_event_entry(SOCKET csocket, int cmd_grp, const char* cmdline, int cn, const char** cl, int dsize, const char* data);
-int dispatch_server_start();
-void dispatch_server_end();
+int dispatch_server_start(void);
+void dispatch_server_end(void);
 int reply_error(SOCKET csocket, const char* msg);
 
 /* replication.c */
 int do_replication(struct server_t* org_server, int cmd_grp, const char* key);
-int replication_queue_count();
+int replication_queue_count(void);
 int replication_event_entry(struct server_t* org_server, int cmd_grp, const char* key);
-int replication_server_start();
-void replication_server_end();
+int replication_server_start(void);
+void replication_server_end(void);
 
 /* dataio.c */
 char* bget_command(struct server_socket_t* ss, const char* key, int* dbsize);
@@ -258,9 +258,9 @@ int friend_lock_server(struct friend_t* friend_list, struct server_t* server);
 int friend_unlock_server(struct friend_t* friend_list, struct server_t* server);
 
 /* informed.c */
-int friend_informed_start();
+int friend_informed_start(void);
 int friend_informed_event(SOCKET socket, struct sockaddr_in sockaddr);
-void friend_informed_end();
+void friend_informed_end(void);
 
 /* lock_server.c */
 int lock_servers(struct server_t* server, struct server_t* oserver);

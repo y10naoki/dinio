@@ -70,7 +70,7 @@ extern "C" {
 
 /* ds_server.c */
 int ds_create(const char* svrdef_fname);
-void ds_close();
+void ds_close(void);
 struct server_t* ds_get_server(const char* ip, int port);
 struct server_t* ds_create_server(const char* ip, int port, int scale_factor);
 int ds_detach_server(struct server_t* server);
@@ -85,8 +85,8 @@ int ds_check_server(struct server_t* server);
 void ds_active_check_thread(void* argv);
 
 /* connect.c */
-int ds_connect();
-void ds_disconnect();
+int ds_connect(void);
+void ds_disconnect(void);
 int ds_connect_server(struct server_t* server);
 void ds_disconnect_server(struct server_t* server);
 struct server_socket_t* ds_server_socket(struct server_t* server);
