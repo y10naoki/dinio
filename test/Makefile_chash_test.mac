@@ -1,0 +1,16 @@
+PROGRAM = chash_test
+
+CC = gcc
+CFLAGS = -g -Wall -O2 -I/usr/local/include/nestalib -DHAVE_KQUEUE
+
+.SUFFIXES: .c .o
+
+OBJS = chash_test.o
+
+$(PROGRAM): $(OBJS)
+	$(CC) -o $@ -lpthread -lz -lnesta $(OBJS) ../ds_server.o ../connect.o ../consistent_hash.o
+
+$(OBJS): ../ds_server.h
+
+clean:
+	rm -f $(PROGRAM) *.o *~

@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1C257E234C6D5F00AD0DF6 /* libnesta-0.9.5.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1C257D234C6D5F00AD0DF6 /* libnesta-0.9.5.0.dylib */; };
+		CE1C2592234C6DDB00AD0DF6 /* redistribution.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C257F234C6DD900AD0DF6 /* redistribution.c */; };
+		CE1C2593234C6DDB00AD0DF6 /* memc_gateway.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C2580234C6DDA00AD0DF6 /* memc_gateway.c */; };
+		CE1C2594234C6DDB00AD0DF6 /* dinio_server.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C2581234C6DDA00AD0DF6 /* dinio_server.c */; };
+		CE1C2595234C6DDB00AD0DF6 /* connect.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C2582234C6DDA00AD0DF6 /* connect.c */; };
+		CE1C2596234C6DDB00AD0DF6 /* informed.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C2583234C6DDA00AD0DF6 /* informed.c */; };
+		CE1C2597234C6DDB00AD0DF6 /* replication.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C2584234C6DDA00AD0DF6 /* replication.c */; };
+		CE1C2598234C6DDB00AD0DF6 /* consistent_hash.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C2586234C6DDA00AD0DF6 /* consistent_hash.c */; };
+		CE1C2599234C6DDB00AD0DF6 /* server_cmd.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C2587234C6DDA00AD0DF6 /* server_cmd.c */; };
+		CE1C259A234C6DDB00AD0DF6 /* dispatch.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C2588234C6DDA00AD0DF6 /* dispatch.c */; };
+		CE1C259B234C6DDB00AD0DF6 /* dataio.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C258B234C6DDA00AD0DF6 /* dataio.c */; };
+		CE1C259C234C6DDB00AD0DF6 /* friend.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C258C234C6DDA00AD0DF6 /* friend.c */; };
+		CE1C259D234C6DDB00AD0DF6 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C258D234C6DDA00AD0DF6 /* config.c */; };
+		CE1C259E234C6DDB00AD0DF6 /* dinio_cmd.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C258E234C6DDA00AD0DF6 /* dinio_cmd.c */; };
+		CE1C259F234C6DDB00AD0DF6 /* ds_check.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C258F234C6DDB00AD0DF6 /* ds_check.c */; };
+		CE1C25A0234C6DDB00AD0DF6 /* ds_server.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C2590234C6DDB00AD0DF6 /* ds_server.c */; };
+		CE1C25A1234C6DDB00AD0DF6 /* lock_server.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1C2591234C6DDB00AD0DF6 /* lock_server.c */; };
 		CEE456B8234C1955008A853C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE456B7234C1955008A853C /* main.c */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +40,49 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CE1C257D234C6D5F00AD0DF6 /* libnesta-0.9.5.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libnesta-0.9.5.0.dylib"; path = "../../../../usr/local/lib/libnesta-0.9.5.0.dylib"; sourceTree = "<group>"; };
+		CE1C257F234C6DD900AD0DF6 /* redistribution.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = redistribution.c; sourceTree = "<group>"; };
+		CE1C2580234C6DDA00AD0DF6 /* memc_gateway.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = memc_gateway.c; sourceTree = "<group>"; };
+		CE1C2581234C6DDA00AD0DF6 /* dinio_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dinio_server.c; sourceTree = "<group>"; };
+		CE1C2582234C6DDA00AD0DF6 /* connect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = connect.c; sourceTree = "<group>"; };
+		CE1C2583234C6DDA00AD0DF6 /* informed.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = informed.c; sourceTree = "<group>"; };
+		CE1C2584234C6DDA00AD0DF6 /* replication.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = replication.c; sourceTree = "<group>"; };
+		CE1C2585234C6DDA00AD0DF6 /* ds_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ds_server.h; sourceTree = "<group>"; };
+		CE1C2586234C6DDA00AD0DF6 /* consistent_hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = consistent_hash.c; sourceTree = "<group>"; };
+		CE1C2587234C6DDA00AD0DF6 /* server_cmd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = server_cmd.c; sourceTree = "<group>"; };
+		CE1C2588234C6DDA00AD0DF6 /* dispatch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dispatch.c; sourceTree = "<group>"; };
+		CE1C2589234C6DDA00AD0DF6 /* dinio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dinio.h; sourceTree = "<group>"; };
+		CE1C258A234C6DDA00AD0DF6 /* consistent_hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = consistent_hash.h; sourceTree = "<group>"; };
+		CE1C258B234C6DDA00AD0DF6 /* dataio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dataio.c; sourceTree = "<group>"; };
+		CE1C258C234C6DDA00AD0DF6 /* friend.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = friend.c; sourceTree = "<group>"; };
+		CE1C258D234C6DDA00AD0DF6 /* config.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = config.c; sourceTree = "<group>"; };
+		CE1C258E234C6DDA00AD0DF6 /* dinio_cmd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dinio_cmd.c; sourceTree = "<group>"; };
+		CE1C258F234C6DDB00AD0DF6 /* ds_check.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ds_check.c; sourceTree = "<group>"; };
+		CE1C2590234C6DDB00AD0DF6 /* ds_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ds_server.c; sourceTree = "<group>"; };
+		CE1C2591234C6DDB00AD0DF6 /* lock_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lock_server.c; sourceTree = "<group>"; };
+		CE1C25A2234C6DFD00AD0DF6 /* config.h.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config.h.in; sourceTree = "<group>"; };
+		CE1C25A3234C6DFD00AD0DF6 /* NEWS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NEWS; sourceTree = "<group>"; };
+		CE1C25A4234C6DFD00AD0DF6 /* AUTHORS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS; sourceTree = "<group>"; };
+		CE1C25A5234C6DFD00AD0DF6 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		CE1C25A6234C6DFD00AD0DF6 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		CE1C25A7234C6DFD00AD0DF6 /* ChangeLog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
+		CE1C25A8234C6DFD00AD0DF6 /* aclocal.m4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aclocal.m4; sourceTree = "<group>"; };
+		CE1C25A9234C6DFD00AD0DF6 /* INSTALL */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = INSTALL; sourceTree = "<group>"; };
+		CE1C25AA234C6DFD00AD0DF6 /* compile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = compile; sourceTree = "<group>"; };
+		CE1C25AB234C6DFD00AD0DF6 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		CE1C25AC234C6DFD00AD0DF6 /* install-sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "install-sh"; sourceTree = "<group>"; };
+		CE1C25AD234C6DFD00AD0DF6 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		CE1C25AE234C6DFE00AD0DF6 /* configure */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = configure; sourceTree = "<group>"; };
+		CE1C25AF234C6DFE00AD0DF6 /* missing */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = missing; sourceTree = "<group>"; };
+		CE1C25B0234C6DFE00AD0DF6 /* configure.ac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
+		CE1C25B1234C6DFE00AD0DF6 /* depcomp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = depcomp; sourceTree = "<group>"; };
+		CE1C25B2234C6E1C00AD0DF6 /* importdata.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = importdata.txt; sourceTree = "<group>"; };
+		CE1C25B3234C6E1C00AD0DF6 /* friend.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = friend.def; sourceTree = "<group>"; };
+		CE1C25B4234C6E1C00AD0DF6 /* test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test; sourceTree = "<group>"; };
+		CE1C25B5234C6E1D00AD0DF6 /* importdata2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = importdata2.txt; sourceTree = "<group>"; };
+		CE1C25B6234C6E1D00AD0DF6 /* logs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = logs; sourceTree = "<group>"; };
+		CE1C25B7234C6E1D00AD0DF6 /* server.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.def; sourceTree = "<group>"; };
+		CE1C25B8234C6E1D00AD0DF6 /* conf */ = {isa = PBXFileReference; lastKnownFileType = folder; path = conf; sourceTree = "<group>"; };
 		CEE456B4234C1955008A853C /* dinio */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dinio; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE456B7234C1955008A853C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,17 +92,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1C257E234C6D5F00AD0DF6 /* libnesta-0.9.5.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE1C257C234C6D5E00AD0DF6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE1C257D234C6D5F00AD0DF6 /* libnesta-0.9.5.0.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CEE456AB234C1955008A853C = {
 			isa = PBXGroup;
 			children = (
-				CEE456B6234C1955008A853C /* dinio */,
+				CE1C25B8234C6E1D00AD0DF6 /* conf */,
+				CE1C25B3234C6E1C00AD0DF6 /* friend.def */,
+				CE1C25B7234C6E1D00AD0DF6 /* server.def */,
+				CE1C25B2234C6E1C00AD0DF6 /* importdata.txt */,
+				CE1C25B5234C6E1D00AD0DF6 /* importdata2.txt */,
+				CE1C25B6234C6E1D00AD0DF6 /* logs */,
+				CE1C25B4234C6E1C00AD0DF6 /* test */,
+				CEE456BE234C197F008A853C /* autotools */,
+				CEE456B6234C1955008A853C /* src */,
 				CEE456B5234C1955008A853C /* Products */,
+				CE1C257C234C6D5E00AD0DF6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,12 +132,54 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CEE456B6234C1955008A853C /* dinio */ = {
+		CEE456B6234C1955008A853C /* src */ = {
 			isa = PBXGroup;
 			children = (
+				CE1C258D234C6DDA00AD0DF6 /* config.c */,
+				CE1C2582234C6DDA00AD0DF6 /* connect.c */,
+				CE1C2586234C6DDA00AD0DF6 /* consistent_hash.c */,
+				CE1C258A234C6DDA00AD0DF6 /* consistent_hash.h */,
+				CE1C258B234C6DDA00AD0DF6 /* dataio.c */,
+				CE1C258E234C6DDA00AD0DF6 /* dinio_cmd.c */,
+				CE1C2581234C6DDA00AD0DF6 /* dinio_server.c */,
+				CE1C2589234C6DDA00AD0DF6 /* dinio.h */,
+				CE1C2588234C6DDA00AD0DF6 /* dispatch.c */,
+				CE1C258F234C6DDB00AD0DF6 /* ds_check.c */,
+				CE1C2590234C6DDB00AD0DF6 /* ds_server.c */,
+				CE1C2585234C6DDA00AD0DF6 /* ds_server.h */,
+				CE1C258C234C6DDA00AD0DF6 /* friend.c */,
+				CE1C2583234C6DDA00AD0DF6 /* informed.c */,
+				CE1C2591234C6DDB00AD0DF6 /* lock_server.c */,
+				CE1C2580234C6DDA00AD0DF6 /* memc_gateway.c */,
+				CE1C257F234C6DD900AD0DF6 /* redistribution.c */,
+				CE1C2584234C6DDA00AD0DF6 /* replication.c */,
+				CE1C2587234C6DDA00AD0DF6 /* server_cmd.c */,
 				CEE456B7234C1955008A853C /* main.c */,
 			);
-			path = dinio;
+			path = src;
+			sourceTree = "<group>";
+		};
+		CEE456BE234C197F008A853C /* autotools */ = {
+			isa = PBXGroup;
+			children = (
+				CE1C25A8234C6DFD00AD0DF6 /* aclocal.m4 */,
+				CE1C25A4234C6DFD00AD0DF6 /* AUTHORS */,
+				CE1C25A7234C6DFD00AD0DF6 /* ChangeLog */,
+				CE1C25AA234C6DFD00AD0DF6 /* compile */,
+				CE1C25A2234C6DFD00AD0DF6 /* config.h.in */,
+				CE1C25AE234C6DFE00AD0DF6 /* configure */,
+				CE1C25B0234C6DFE00AD0DF6 /* configure.ac */,
+				CE1C25A5234C6DFD00AD0DF6 /* COPYING */,
+				CE1C25B1234C6DFE00AD0DF6 /* depcomp */,
+				CE1C25A9234C6DFD00AD0DF6 /* INSTALL */,
+				CE1C25AC234C6DFD00AD0DF6 /* install-sh */,
+				CE1C25AD234C6DFD00AD0DF6 /* Makefile.am */,
+				CE1C25AB234C6DFD00AD0DF6 /* Makefile.in */,
+				CE1C25AF234C6DFE00AD0DF6 /* missing */,
+				CE1C25A3234C6DFD00AD0DF6 /* NEWS */,
+				CE1C25A6234C6DFD00AD0DF6 /* README */,
+			);
+			name = autotools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +238,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1C259E234C6DDB00AD0DF6 /* dinio_cmd.c in Sources */,
+				CE1C2594234C6DDB00AD0DF6 /* dinio_server.c in Sources */,
+				CE1C2597234C6DDB00AD0DF6 /* replication.c in Sources */,
+				CE1C25A1234C6DDB00AD0DF6 /* lock_server.c in Sources */,
+				CE1C2596234C6DDB00AD0DF6 /* informed.c in Sources */,
+				CE1C2593234C6DDB00AD0DF6 /* memc_gateway.c in Sources */,
+				CE1C2595234C6DDB00AD0DF6 /* connect.c in Sources */,
+				CE1C2592234C6DDB00AD0DF6 /* redistribution.c in Sources */,
+				CE1C2599234C6DDB00AD0DF6 /* server_cmd.c in Sources */,
+				CE1C259A234C6DDB00AD0DF6 /* dispatch.c in Sources */,
+				CE1C25A0234C6DDB00AD0DF6 /* ds_server.c in Sources */,
+				CE1C259B234C6DDB00AD0DF6 /* dataio.c in Sources */,
+				CE1C259F234C6DDB00AD0DF6 /* ds_check.c in Sources */,
+				CE1C259C234C6DDB00AD0DF6 /* friend.c in Sources */,
 				CEE456B8234C1955008A853C /* main.c in Sources */,
+				CE1C259D234C6DDB00AD0DF6 /* config.c in Sources */,
+				CE1C2598234C6DDB00AD0DF6 /* consistent_hash.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +374,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/nestalib,
+					src,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -246,6 +388,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/nestalib,
+					src,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

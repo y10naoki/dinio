@@ -1,0 +1,22 @@
+2011/02/11(0.3.1)
+    - promoted efficiency of it by buffering for socket input.
+
+2011/01/10(0.3.0)
+    - assigned one connection to one thread,
+      but changed it to be able to handle it in few threads.
+      changed the default value of the 'worker_threads' parameter to 4 from 100.
+    - add 'dinio.dispatch_threads' config parameter.
+
+2010/12/23(0.2.1)
+    - add '-import' program command, file import to datastore.
+
+2010/12/18(0.2.0)
+    - add 'dinio.worker_threads' config parameter.
+    - add 'dinio.pool_wait_time' config parameter.
+    - add 'dinio.lock_wait_time' config parameter.
+    - add 'dinio.replication_delay_time' config parameter.
+    - supported synchronization-type replication.
+    - add '-hash key' program command, display consistent hash server.
+
+2010/11/13 (0.1.0)
+    - first release
