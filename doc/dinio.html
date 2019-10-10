@@ -1,0 +1,448 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="memcached,分散KVS,キーバリューストア,ハッシュ,データベース">
+<title>Dinio - Distributed Data Store for Nesta/IO</title>
+<link rel="stylesheet" type="text/css" href="./dstyle.css">
+</head>
+<body>
+
+<h1>Dinio - Distributed Data Store for Nesta/IO</h1>
+
+<h2>Dinio とは</h2>
+
+<p>Dinio は <a href="https://github.com/memcached/memcached/blob/master/doc/protocol.txt" target="sub">memcached プロトコル</a>に対応したキー・バリュー型データストアである <a href="https://github.com/y10naoki/nestaio" target="sub">Nesta/IO</a> に分散データストアの機能を提供するサーバー製品です。
+</p>
+<p>
+複数のデータストア(<a href="https://github.com/y10naoki/nestaio" target="sub">Nesta/IO</a>)をノード（実態はプロセスです）として管理することで大量のデータを扱う事が可能になります。
+Dinio は論理的に 1,000台までのデータストアを管理することが可能です。
+</p>
+
+<p>分散データストア Dinio は以下の特徴を備えています。
+</p>
+<ul>
+  <li>一般的なハードウェアで構築可能な経済性
+  <li>スケールアウト可能な拡張性
+  <li><a href="https://ja.wikipedia.org/wiki/%E3%82%B3%E3%83%B3%E3%82%B7%E3%82%B9%E3%83%86%E3%83%B3%E3%83%88%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E6%B3%95" target="sub">コンシステント・ハッシング法</a>による高い分散性
+  <li>複数ノードに対するレプリケーションによる耐障害性
+</ul>
+
+<p>
+データストアの追加や削除はシステムを停止することなく行うことができます。<br>
+また、データストアの追加や削除が行われた時点で自動的にノード間でデータの再配分が行われます。このデータの再配分を行っているときは、対象となるデータストアが分散ロックメカニズムによって一時的にロックされますのでデータの一貫性が保たれます。
+</p>
+
+<p>
+Dinio はデータの複製を作成するレプリケーション機能を備えています。<br>
+レプリケーション機能を用いることでどこかのデータストアが障害を起こしても複製を持つデータストアから目的のデータを取り扱うことが可能になります。標準の設定では3カ所のデータストアにデータを書き込みます。このことでバックアップを必要としないデータベースを実現しています。<br>
+レプリケーションはキューイングされてバックエンドのスレッドで実行されるため、メインスレッドの性能に影響を与えない設計になっています。コンフィグレーションによってはデータの更新と同期してレプリケーションを行う設定も可能です。
+</p>
+
+<p>
+Dinio はマスタサーバーを必要としないため単一障害点が存在しません。<br>
+一つの Dinio を複数のアプリケーションから共有する事も可能です。また、アプリケーションごとに専用の Dinio を用意することでパフォーマンスが向上します。
+データストアの情報は複数の Dinio 間で共有しています。データストアの追加や削除などが発生した場合はデータストアの情報が Dinio 間で瞬時に通知されます。<br>
+データストアの情報を共有する Dinio のサーバー情報はコンフィグレーションファイルの <tt>dinio.friend_file</tt> で定義します。
+</p>
+
+<p>
+クライアントからのインターフェイスは <a href="https://github.com/memcached/memcached/blob/master/doc/protocol.txt" target="sub">memcached プロトコル</a>になります。<br>
+プログラムは C言語で記述されているので Linux, Mac OS/X および Windows で動作します。
+</p>
+<p>
+<center><img src="./dinio_fig.gif"></center>
+</p>
+<p>
+Dinio と <a href="https://github.com/y10naoki/nestaio" target="sub">Nesta/IO</a> のインターフェイスも <a href="https://github.com/memcached/memcached/blob/master/doc/protocol.txt" target="sub">memcached プロトコル</a>です。
+ただし、レプリケーションやノード間でのデータの再配分を効率よく処理するために独自のコマンドを拡張しています。
+</p>
+<h2>ダウンロード</h2>
+
+<p>ライセンスは MIT License になります。
+</p>
+
+nestalib:&nbsp;
+<a href="https://github.com/y10naoki/nestalib">https://github.com/y10naoki/nestalib</a><br>
+Nesta/IO:&nbsp;
+<a href="https://github.com/y10naoki/nestaio">https://github.com/y10naoki/nestaio</a><br>
+Dinio:&nbsp;
+<a href="https://github.com/y10naoki/dinio">https://github.com/y10naoki/dinio</a><br>
+
+<h2>インストール</h2>
+
+<p>UNIX 系 OS 上では以下のようにインストールします。<br>
+nestalib をインストールした後に Nesta/IO と Dinio をインストールします。
+</p>
+
+<p>Nesta/IO とDinio を同じコンピュータにインストールする場合はどちらかのポート番号を変更する必要があります。Nesta/IO と Dinio のポート番号はデフォルトで 11211 になっています。</p>
+
+<p>
+1. nestalib のインストール<br>
+デフォルトではライブラリが <tt>/usr/local/lib</tt> にヘッダーファイルが <tt>/usr/local/include/nestalib</tt> にインストールされます。
+<pre>
+$ tar zxvf nestalib-0.9.4.tar.gz
+$ cd nestalib-0.9.4
+$ ./configure
+$ make
+$ sudo make install
+</pre>
+</p>
+
+<p>
+2. Nesta/IO のインストール<br>
+<pre>
+$ tar zxvf nestaio-0.3.1.tar.gz
+$ cd nestaio-0.3.1
+$ ./configure
+$ make
+</pre>
+</p>
+
+<p>
+3. Dinio のインストール<br>
+<pre>
+$ tar zxvf dinio-0.3.1.tar.gz
+$ cd dinio-0.3.1
+$ ./configure
+$ make
+</pre>
+</p>
+
+<h2>Nesta/IO の起動と終了</h2>
+<p>
+【起動方法】
+<pre>
+$ cd nestaio-0.3.1
+$ ./nestaio [-start] [-f <i>conf.file</i>]
+</pre>
+</p>
+
+<p>
+【終了方法】
+<pre>
+$ ./nestaio -stop [-f <i>conf.file</i>]
+</pre>
+</p>
+
+<h2>Dinio の起動と終了</h2>
+
+<p>
+【起動方法】
+<pre>
+$ cd dinio-0.3.1
+$ ./dinio [-start] [-f <i>conf.file</i>]
+</pre>
+</p>
+
+<p>
+【終了方法】
+<pre>
+$ ./dinio -stop [-f <i>conf.file</i>]
+</pre>
+</p>
+
+<p>
+【その他の起動パラメータ】<br>
+以下のコマンドは Dinio を起動したコンピュータでしか実行できません。
+</p>
+<p>
+<ul>
+  <li>データストアの状態を表示します。<br>
+Dinio が管理しているデータストアの状態を標準出力に表示します。
+</ul>
+<pre>
+$ ./dinio -status [-f <i>conf.file</i>]
+</pre>
+</p>
+
+<p>
+<ul>
+  <li>データストアをコンシステント・ハッシュのリングに配置します。<br>
+新たにリングに配置されたデータストアに他のノードからデータが配分されます。また、レプリケーション数を適切に保つために余分なノードから複製が削除されます。追加されたデータストアの情報は他の Dinio に通知されます。
+</ul>
+<pre>
+$ ./dinio -add <i>IPアドレス</i> [<i>ポート番号(11211)</i> [<i>スケールファクタ(100)</i>]] [-f <i>conf.file</i>]
+</pre>
+</p>
+
+<p>
+<ul>
+  <li>コンシステント・ハッシュのリングからデータストアを削除します。<br>
+データストアを削除した事でレプリケーション数を適切に保つためにデータの再配分が行われます。<br>
+削除されたデータストアの情報は他の Dinio に通知されます。
+</ul>
+<pre>
+$ ./dinio -remove <i>IPアドレス</i> [<i>ポート番号(11211)</i>] [-f <i>conf.file</i>]
+</pre>
+</p>
+
+<p>
+<ul>
+  <li>データストアのロックを解除します。<br>
+何らかの障害でデータストアがロックされてしまった場合にロックを解除します。
+</ul>
+<pre>
+$ ./dinio -unlock <i>IPアドレス</i> [<i>ポート番号(11211)</i>] [-f <i>conf.file</i>]
+</pre>
+</p>
+
+<p>
+<ul>
+  <li>キーが配置されるサーバーの情報を取得します。<br>
+指定されたキー値から配置されるサーバーのアドレスとポート番号を取得します。
+</ul>
+<pre>
+$ ./dinio -hash <i>キー値</i> [<i>キー値 ...</i>] [-f <i>conf.file</i>]
+</pre>
+</p>
+
+<p>
+<ul>
+  <li>指定されたファイルの内容をデータストアに挿入します。<br>
+デーモンとして起動している場合のファイル名はフルパスで指定します。<br>
+ファイルのフォーマットは以下の通りです。<br>
+&lt;command&gt; &lt;key&gt; &lt;flags&gt; &lt;exptime&gt;\n<br>
+&lt;datablock&gt;\n<br>
+<br>
+※ &lt;command&gt; は set, add, replace, append, prepend<br>
+※ データサイズは &lt;datablock&gt; のサイズが自動的に算出されます。<br>
+</ul>
+<pre>
+$ ./dinio -import <i>ファイル名</i> [-f <i>conf.file</i>]
+</pre>
+</p>
+
+<h2>コンフィグレーション</h2>
+
+<p>
+コンフィグレーションは Dinio を展開したディレクトリの <tt>conf/dinio.conf</tt> を修正します。<br>
+<tt>conf/dinio.conf</tt> の修正を反映させるにはプログラムを再起動する必要があります。
+</p>
+
+<table width="100%" cellpadding="0" cellspacing="2" border="0">
+  <tbody align="center">
+    <tr>
+      <td valign="top"><font color="#000000" size=-1>
+        <table border="1" cellpadding="1" cellspacing="0" width="95%">
+          <tr bgcolor="#FFFFCC">
+            <td align="center" nowrap><b>パラメータ名</b></td>
+            <td align="center" nowrap><b>型</b></td>
+            <td align="center"><b>内容</b></td>
+            <td align="center" nowrap><b>デフォルト</b></td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.daemon</tt></td>
+            <td nowrap>数値</td>
+            <td>デーモンとして動作させる場合は 1 を指定します。<br>Windows では無効です。</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.username</tt></td>
+            <td nowrap>文字列</td>
+            <td>ユーザーを切り替える場合のユーザー名を指定します。<br>Windows では無効です。</td>
+            <td>なし</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.port_no</tt></td>
+            <td nowrap>数値</td>
+            <td>memcached コマンドを受け付ける TCP/IP のポート番号を指定します。</td>
+            <td>11211</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.backlog</tt></td>
+            <td nowrap>数値</td>
+            <td>接続キューの数を指定します。</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.worker_threads</tt></td>
+            <td nowrap>数値</td>
+            <td>ワーカスレッドの数を指定します。<br>CPU コア数 + 2 以上の値を推奨します。</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.dispatch_threads</tt></td>
+            <td nowrap>数値</td>
+            <td>コマンドを実行するスレッドの数を指定します。<br>ワーカスレッドの数の2倍ぐらいの値を推奨します。</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.error_file</tt></td>
+            <td nowrap>文字列</td>
+            <td>エラーログのファイル名を指定します。</td>
+            <td>標準エラー</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.output_file</tt></td>
+            <td nowrap>文字列</td>
+            <td>出力ログのファイル名を指定します。</td>
+            <td>標準出力</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.trace_flag</tt></td>
+            <td nowrap>数値</td>
+            <td>動作状況を標準出力に出力する場合は 1 を指定します。</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.datastore_timeout</tt></td>
+            <td nowrap>数値</td>
+            <td>データストアからのレスポンスのタイムアウト時間をミリ秒で指定します。</td>
+            <td>3000</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.lock_wait_time</tt></td>
+            <td nowrap>数値</td>
+            <td>データストアがロックされていた場合にロックが解除されるまでの最大待ち時間を秒で指定します。</td>
+            <td>180</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.active_check_interval</tt></td>
+            <td nowrap>数値</td>
+            <td>データストアを監視するチェック間隔を秒で指定します。</td>
+            <td>60</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.auto_detach</tt></td>
+            <td nowrap>数値</td>
+            <td>データストアが動作していない場合に自動的にコンシステント・ハッシュのリングから削除を行う場合は 1 を指定します。<br>データストアが削除されるとデータの再配分も自動的に行われます。<br>指定しない場合はデータストアのステータスが INACTIVE に変わるだけです。</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.pool_init_conns</tt></td>
+            <td nowrap>数値</td>
+            <td>データストアとのコネクション数を指定します。<br>すべてのデータストアとのコネクションをここで指定された数分プールして利用します。</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.pool_ext_conns</tt></td>
+            <td nowrap>数値</td>
+            <td>データストアとのコネクション数が <tt>dinio.pool_init_conns</tt> に達したときに拡張するコネクション数を指定します。コネクションは <tt>dinio.pool_init_conns</tt> に加えてここで指定した数まで拡張されます。</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.pool_ext_release_time</tt></td>
+            <td nowrap>数値</td>
+            <td>拡張されたデータストアとのコネクションをクローズするまでの時間を秒数で指定します。<br>ここで指定された時間内にアクセスがない場合は拡張されたコネクションはクローズされます。</td>
+            <td>180</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.pool_wait_time</tt></td>
+            <td nowrap>数値</td>
+            <td>プーリングされたデータストアとのコネクションを取得するまでの最大待ち時間を秒数で指定します。<br>ここで指定された時間内に空きコネクションがない場合はエラーになります。</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.server_file</tt></td>
+            <td nowrap>文字列</td>
+            <td>データストアのサーバー情報を定義したファイル名を指定します。<br>サーバーのIPアドレス、ポート番号とサーバーの処理性能を示すスケールファクタを定義します。スケールファクタは標準を 100 として性能に応じて指定します。このスケールファクタが仮想ノード数になります。</td>
+            <td><a href="./server.def">./server.def</a></td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.replications</tt></td>
+            <td nowrap>数値</td>
+            <td>データストアのレプリケーション数を指定します。ここで指定した数だけ複製が作成されます。</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.replication_threads</tt></td>
+            <td nowrap>数値</td>
+            <td>レプリケーションを実行するスレッドの数を指定します。レプリケーションは非同期で実行されます。<br>スレッド数にゼロを指定するとコマンドと同時にレプリケーションが実行されます。この場合はコマンドの応答時間が長くかかります。</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.replication_delay_time</tt></td>
+            <td nowrap>数値</td>
+            <td>レプリケーションをバックエンドで非同期に実行する場合の遅延時間をミリ秒で指定します。<br>サーバーの処理性能が低い場合はこの値を調整します。</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.friend_file</tt></td>
+            <td nowrap>文字列</td>
+            <td>データストアの情報を共有する Dinio のサーバー情報を定義したファイル名を指定します。<br>ファイルにはサーバーのIPアドレスとポート番号を記述します。</td>
+            <td><a href="./friend.def">./friend.def</a></td>
+          </tr>
+          <tr>
+            <td nowrap><tt>dinio.informed_port</tt></td>
+            <td nowrap>数値</td>
+            <td>Dinio 間で情報のやり取りを行う TCP/IP のポート番号を指定します。</td>
+            <td>15432</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>ベンチマーク</h2>
+
+<p>Dinio のベンチマークを参考値として掲載しておきます。<br>
+ベンチマークプログラムには <a href="http://www.interdb.jp/techinfo/mcb/">mcb</a> を利用させていただきました。
+</p>
+
+<p>ローカルホストに４つのデータストアを起動してレプリケーション数は標準の 2 で計測しました。書き込まれたデータは２箇所のデータストアに複製されます。</p>
+
+<pre>
+$ ./dinio
+$ ./dinio -status
+
+start 2011/01/21 09:42:45  running 4 datastore servers.
+Status IP------------- PORT  #NODE #CONN #set------ #get------ #del------
+[OK  ] 127.0.0.1       11221   100    10          0          0          0
+[OK  ] 127.0.0.1       11222   100    10          0          0          0
+[OK  ] 127.0.0.1       11223   100    10          0          0          0
+[OK  ] 127.0.0.1       11224   100    10          0          0          0
+
+</pre>
+
+<p>【評価マシン】<br>
+MacBook Pro (CPU:Intel Core 2 Duo 2.26GHz, Memory:2GB)<br>
+Mac OS X 10.6 Snow Leopard (64-bit kernel)
+</p>
+<p>【ベンチマーク内容】<br>
+・set：同時接続 100 でランダムなキーを生成し、データ長が約1,000バイトの set コマンドを１接続当たり 1,000回繰り返す。<br>
+・get：同時接続 100 でランダムなキーを生成し、get コマンドを１接続当たり 1,000回繰り返す。<br>
+</p>
+
+<table width="100%" cellpadding="0" cellspacing="2" border="0">
+  <tbody>
+    <tr>
+      <td valign="top"><font color="#000000" size=-1>
+        <table border="1" cellpadding="1" cellspacing="0" width="80%">
+          <tr bgcolor="#FFFFFF" >
+            <td align="center"><b>command</b></td>
+            <td align="center"><b>performance(#/sec)</b></td>
+          </tr>
+          <tr bgcolor="#FFFFCC">
+            <td><tt>$ ./mcb -c set -t 100 -n 1000 -l 1000</tt></td>
+            <td align="right">6,775</td>
+          </tr>
+          <tr bgcolor="#FFFFCC">
+            <td><tt>$ ./mcb -c get -t 100 -n 1000</tt></td>
+            <td align="right">8,984</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>制限事項</h2>
+
+<ul>
+  <li>キーの最大サイズは 250 バイトです。
+  <li>値の最大サイズは 1MB です。
+  <li>UDP プロトコル、バイナリプロトコルには対応していません。
+  <li>flush_all コマンドには対応していません。
+</ul>
+
+<hr>
+
+<p>
+Author: <a href="mailto:y10naoki@gmail.com">YAMAMOTO Naoki</a><br>
+Create date: 2011/02/11<br>
+Last modified: 2019/10/10
+</p>
+</BODY>
+</HTML>

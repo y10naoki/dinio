@@ -1,0 +1,37 @@
+body {
+  background: white;
+  margin: 5%;
+  /*/*/ line-height: 1.5; /* */
+}
+h2 {
+  font-size: large;
+  margin: 2em 0em 0em 0em;
+  padding: 0.2em 0.5em;
+  border-width: thin;
+  border-color: white;
+  background-color: #99F;
+}
+h3 {
+  margin: 1em 0em 0em 0em;
+  padding: 0.2em 0.5em;
+  border-style: solid;
+  border-width: 0px 0px 0px 20px;
+  border-color: #99F;
+}
+pre {
+  color: maroon;
+  margin-left: 2em;
+  /*/*/ line-height: 1.2; /* */
+}
+tt { color: maroon }
+em { font-style: normal; color: #F30 }
+a:hover { color: red }
+a[name]:hover { color: black }
+blockquote {
+  margin-left: 0em;
+  padding-left: 1.5em;
+  border-left: #FFCC33 solid 0.5em;
+}
+img { border-style: none }
+.left { float: left; margin: 1em 1em 1em 0em; }
+.right { float: right; margin: 1em 0em 1em 1em; }
