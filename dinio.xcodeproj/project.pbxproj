@@ -76,14 +76,14 @@
 		CE1C25AF234C6DFE00AD0DF6 /* missing */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = missing; sourceTree = "<group>"; };
 		CE1C25B0234C6DFE00AD0DF6 /* configure.ac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
 		CE1C25B1234C6DFE00AD0DF6 /* depcomp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = depcomp; sourceTree = "<group>"; };
-		CE1C25B2234C6E1C00AD0DF6 /* importdata.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = importdata.txt; sourceTree = "<group>"; };
-		CE1C25B3234C6E1C00AD0DF6 /* friend.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = friend.def; sourceTree = "<group>"; };
 		CE1C25B4234C6E1C00AD0DF6 /* test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test; sourceTree = "<group>"; };
-		CE1C25B5234C6E1D00AD0DF6 /* importdata2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = importdata2.txt; sourceTree = "<group>"; };
 		CE1C25B6234C6E1D00AD0DF6 /* logs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = logs; sourceTree = "<group>"; };
-		CE1C25B7234C6E1D00AD0DF6 /* server.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.def; sourceTree = "<group>"; };
 		CE1C25B8234C6E1D00AD0DF6 /* conf */ = {isa = PBXFileReference; lastKnownFileType = folder; path = conf; sourceTree = "<group>"; };
 		CE59C0ED234F240900433420 /* doc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = doc; sourceTree = "<group>"; };
+		CE59C0EE234F245E00433420 /* importdata.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = importdata.txt; sourceTree = "<group>"; };
+		CE59C0EF234F245E00433420 /* importdata2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = importdata2.txt; sourceTree = "<group>"; };
+		CE59C0F0234F245E00433420 /* friend.def */ = {isa = PBXFileReference; lastKnownFileType = text; path = friend.def; sourceTree = "<group>"; };
+		CE59C0F1234F245E00433420 /* server.def */ = {isa = PBXFileReference; lastKnownFileType = text; path = server.def; sourceTree = "<group>"; };
 		CEE456B4234C1955008A853C /* dinio */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dinio; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE456B7234C1955008A853C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,14 +111,14 @@
 		CEE456AB234C1955008A853C = {
 			isa = PBXGroup;
 			children = (
-				CE59C0ED234F240900433420 /* doc */,
 				CE1C25B8234C6E1D00AD0DF6 /* conf */,
-				CE1C25B3234C6E1C00AD0DF6 /* friend.def */,
-				CE1C25B7234C6E1D00AD0DF6 /* server.def */,
-				CE1C25B2234C6E1C00AD0DF6 /* importdata.txt */,
-				CE1C25B5234C6E1D00AD0DF6 /* importdata2.txt */,
+				CE59C0ED234F240900433420 /* doc */,
 				CE1C25B6234C6E1D00AD0DF6 /* logs */,
 				CE1C25B4234C6E1C00AD0DF6 /* test */,
+				CE59C0F0234F245E00433420 /* friend.def */,
+				CE59C0EE234F245E00433420 /* importdata.txt */,
+				CE59C0EF234F245E00433420 /* importdata2.txt */,
+				CE59C0F1234F245E00433420 /* server.def */,
 				CEE456BE234C197F008A853C /* autotools */,
 				CEE456B6234C1955008A853C /* src */,
 				CEE456B5234C1955008A853C /* Products */,
