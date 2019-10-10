@@ -83,6 +83,7 @@
 		CE1C25B6234C6E1D00AD0DF6 /* logs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = logs; sourceTree = "<group>"; };
 		CE1C25B7234C6E1D00AD0DF6 /* server.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.def; sourceTree = "<group>"; };
 		CE1C25B8234C6E1D00AD0DF6 /* conf */ = {isa = PBXFileReference; lastKnownFileType = folder; path = conf; sourceTree = "<group>"; };
+		CE59C0ED234F240900433420 /* doc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = doc; sourceTree = "<group>"; };
 		CEE456B4234C1955008A853C /* dinio */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dinio; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE456B7234C1955008A853C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,6 +111,7 @@
 		CEE456AB234C1955008A853C = {
 			isa = PBXGroup;
 			children = (
+				CE59C0ED234F240900433420 /* doc */,
 				CE1C25B8234C6E1D00AD0DF6 /* conf */,
 				CE1C25B3234C6E1C00AD0DF6 /* friend.def */,
 				CE1C25B7234C6E1D00AD0DF6 /* server.def */,
